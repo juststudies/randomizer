@@ -1,7 +1,7 @@
 # randomizer
 
 
-![Imgur](https://i.imgur.com/KTUF5cY.gif)
+![Imgur](https://i.imgur.com/KTUF5cY.gifv)
 
 
 ## Project setup
