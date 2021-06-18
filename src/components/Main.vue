@@ -85,6 +85,7 @@
   width: 100%;
   color:aliceblue;
   text-shadow: 0 0 5px #C8C8C8;
+  position:relative;
 }
 
 .container .main{
@@ -95,7 +96,7 @@
   list-style: none;
   position: absolute;
   left: 0;
-  bottom: 10%;
+  bottom: -150px;
 }
 
 .container .bucket li{
@@ -178,11 +179,14 @@
 
   .container .bucket li{
     font-size: 1.5em;
-    transform: translate(0, -80px);
+    position: relative;
+    bottom: -100px;
+    
   }
 
   .container .choosen{
     font-size: 3em;
+    height: 40px;
   }
 }
 </style>
