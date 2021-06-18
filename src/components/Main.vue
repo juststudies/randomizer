@@ -1,11 +1,16 @@
 <template>
   <div class="container">
     <div class="main">
-      <input type="text" @keypress="handlePush">
+      <div v-if="ideas.length < 6">
+        <input type="text" @keypress="handlePush">
+      </div>
+      <div v-else>
+        <span>Desculpe amigão, número de ideias excede a capacidade máxima de 5 ideias!</span>
+      </div>
       <button @click="randomize">Gerar</button>
     </div>
     <ul class="bucket">
-      <li v-for="idea in ideas" :key="idea.id">
+      <li v-for="idea in ideas.slice(0,6)" :key="idea.id">
         {{idea.content}}
       </li>
     </ul>
@@ -34,12 +39,14 @@
     methods:{
       handlePush(e){
         const input = document.querySelector('input');
-        if(e.keyCode === 13 && input.value){
-          this.ideas.push({
-            id: this.nextId++,
-            content: input.value
-          })
-          input.value = '';
+        if(this.ideas.length < 6){
+          if(e.keyCode === 13 && input.value){
+            this.ideas.push({
+              id: this.nextId++,
+              content: input.value
+            })
+            input.value = '';
+          }
         }
       },
 
@@ -71,12 +78,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .container{
   width: 100%;
   color:aliceblue;
-  flex-direction: column;
+  text-shadow: 0 0 5px #C8C8C8;
 }
 
 .container .main{
@@ -115,6 +123,14 @@
   border: 2px solid #0099FF;
   border-radius: 5px;
   color: #99FF00;
+  margin-top: 15px;
+  text-shadow: 0 0 3px #99FF00;
+}
+
+.container .main span{
+  font-size: 24px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
 }
 
 .container .main button:hover{
@@ -161,8 +177,8 @@
   }
 
   .container .bucket li{
-    font-size: 1em;
-    transform: translate(0, -280px)
+    font-size: 1.5em;
+    transform: translate(0, -80px);
   }
 
   .container .choosen{
